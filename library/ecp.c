@@ -1713,6 +1713,7 @@ cleanup:
     return( ret );
 }
 
+#if defined(ECP_SHORTWEIERSTRASS)
 /*
  * Linear combination
  * NOT constant-time
@@ -1723,9 +1724,6 @@ int mbedtls_ecp_muladd( mbedtls_ecp_group *grp, mbedtls_ecp_point *R,
 {
     int ret;
     mbedtls_ecp_point mP;
-
-    if( ecp_get_type( grp ) != ECP_TYPE_SHORT_WEIERSTRASS )
-        return( MBEDTLS_ERR_ECP_FEATURE_UNAVAILABLE );
 
     mbedtls_ecp_point_init( &mP );
 
@@ -1740,6 +1738,7 @@ cleanup:
 
     return( ret );
 }
+#endif /* ECP_SHORTWEIERSTRASS */
 
 
 #if defined(ECP_MONTGOMERY)
